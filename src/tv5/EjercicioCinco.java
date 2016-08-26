@@ -17,7 +17,7 @@ public class EjercicioCinco extends javax.swing.JFrame {
      * Creates new form EjercicioCinco
      */
     double v[];
-    double suma, productoria, division;
+    double suma, productoria;
     int longitud;
 
     public EjercicioCinco() {
@@ -142,6 +142,7 @@ public class EjercicioCinco extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtLKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLKeyTyped
@@ -200,11 +201,18 @@ public class EjercicioCinco extends javax.swing.JFrame {
     private void cmdLMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLMActionPerformed
         // TODO add your handling code here:
         double n;
+        suma = 0;
+        productoria = 1;
         for (int i = 0; i < v.length; i++) {
             n = Double.parseDouble(JOptionPane.showInputDialog(this, "Digite el elemento en la posición " + i));
             v[i] = n;
         }
-        division = longitud / 2;
+        for (int i = 0; i < v.length / 2 ; i++) {
+            productoria = productoria * v[i];
+        }
+        for (int i = (v.length / 2); i < v.length; i++) {
+            suma = suma + v[i];
+        }
         
         txtL.setEditable(false);
         cmdC.setEnabled(false);
@@ -216,9 +224,17 @@ public class EjercicioCinco extends javax.swing.JFrame {
     private void cmdLAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLAActionPerformed
         // TODO add your handling code here:
         double n;
+        suma = 0;
+        productoria = 1;
         for (int i = 0; i < v.length; i++) {
-            n = (int) (Math.random() * 23 + 1);
+            n = (int) (Math.random() * 10 + 1);
             v[i] = n;
+        }
+        for (int i = 0; i < v.length / 2 ; i++) {
+            productoria = productoria * v[i];
+        }
+        for (int i = (v.length / 2); i < v.length; i++) {
+            suma = suma + v[i];
         }
         JOptionPane.showMessageDialog(this, "Vector llenado satisfactoriamente");
         cmdC.setEnabled(false);
@@ -233,6 +249,8 @@ public class EjercicioCinco extends javax.swing.JFrame {
         for (int i = 0; i < v.length; i++) {
             txtR.append("" + v[i] + "\n");
         }
+        txtR.append("Productoria: " + productoria + "\n");
+        txtR.append("Sumatoria: " + suma + "\n");
         txtL.setEditable(false);
         cmdC.setEnabled(false);
         cmdLM.setEnabled(false);
